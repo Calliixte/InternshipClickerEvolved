@@ -39,8 +39,8 @@
             <div class="upgrade" v-for="(up,index) in upgrades" :key="index">
                 <div v-if="upgrades[index].cost!=-1">
                     <h3 class="text">{{upgrades[index].title}}</h3>
-                    <p class="text">{{upgrades[index].description}}</p>
-                    <p class="text">{{upgrades[index].effect}}</p>
+                    <p class="text">{{upgrades[index].subtitle}}</p>
+                    <p class="text">{{upgrades[index].effect_description}}</p>
                     <p class="text" v-if="AMOUNT_UNLOCK-upgrades[index].amountBought>0">Amount until next upgrade : {{AMOUNT_UNLOCK-upgrades[index].amountBought}}</p>
                     <button class="clickButton" class="button" @mouseenter="(event) => checkCost(index,event)" @click="processUpgrade(index)">Upgrade (Get rejected on {{upgrades[index].cost}} applications)</button>
                     
@@ -51,11 +51,16 @@
         <div v-else>
             <p class="text" v-show="!upgradesShown">No upgrades shown</p>
         </div>
+
         <div v-show="settingsShown" class = "popup" id="movePopup">
             <div class="BTNClose">
                 <button @click="showSettings">
                     <img src="./externalFiles/close.svg" alt="leave">
                 </button>
+            </div>
+
+            <div class="leaderboard">
+            
             </div>
 
             <h3>Change the interface</h3>
@@ -86,6 +91,8 @@
             </table>
 
         </div>
+
+
     </div>
 </body>
 </html>

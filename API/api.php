@@ -58,9 +58,6 @@ switch ($method) {
         echo json_encode(['message' => 'Invalid request method']);
         break;
 }
-echo "------input----------------------------\n";
-print_r($input);
-echo "---response----------------------------\n";
-print_r($response);
-echo "---------------------------------------\n";
+echo json_encode($response,JSON_PRETTY_PRINT);
+
 ?>

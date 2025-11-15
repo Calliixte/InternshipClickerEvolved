@@ -1,4 +1,5 @@
 
+const baseUrl = "http://localhost/InternshipClickerEvolved/API/api.php";
 const app = Vue.createApp({
     data () {
         return{
@@ -15,13 +16,15 @@ const app = Vue.createApp({
             upgrades : null,
             keysPressed : {},
             codeCounter : 0,
-            //notes for me : [] = array | {} = object
         };
     },
-    mounted(){
+    async mounted(){
     window.addEventListener("keydown", this.handleKeydown);
     window.addEventListener("keyup", this.handleKeyup);
-        fetch('upgrades.json')
+    let options = { "method" : "GET"}
+    let fullUrl = baseUrl + "?table=upgrade";
+    console.log("full url : "+fullUrl);
+    const response = await fetch(baseUrl + "?table=upgrade", options)
             .then(response=>response.json())
             .then(data=>{
                 this.upgrades = data;
@@ -109,7 +112,7 @@ const app = Vue.createApp({
         },
         processUpgrade(id){
             if(this.Cv>=this.upgrades[id].cost){
-                let methodName = this.upgrades[id].method;
+                let methodName = this.upgrades[id].called_method;
                 if (this[methodName]) {
                     this[methodName](id);
                 }
