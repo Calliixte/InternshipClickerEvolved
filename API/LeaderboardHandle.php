@@ -17,7 +17,7 @@ public static function handlePost($body){
     $stmt = $db->prepare("INSERT INTO leaderboard VALUES (:id_lb,:id_user,:score)");
     $stmt->bindValue(':id_lb',$body['id_lb'],SQLITE3_INTEGER);
     $stmt->bindValue(':id_user',$body['id_user'],SQLITE3_INTEGER);
-    $stmt->bindValue(':score',$body['score'],SQLITE3_INTEGER);    
+    $stmt->bindValue(':score',$body['score'],SQLITE3_INTEGER);
     
     $result = $stmt->execute();
     return $result;

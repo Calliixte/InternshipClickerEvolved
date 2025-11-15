@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LinkedIn</title>
+    <link rel="icon" href="https://static.licdn.com/aero-v1/sc/h/5bukxbhy9xsil5mb7c2wulfbx">
+    <link href="./style/style.css" rel="stylesheet" />
+    <link href="./style/giganticButtonsStyle.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js" defer></script>
+    <script src="./scripts/main.js" defer></script> 
+    
+    <!-- defer forces the browser to load the file as soon as it encounters it, eliminating the need to put the script tags at the end of the body,
+     i'd rather use that in order to keep the code cleaner -->
+</head>
+<body>
+    
+    <div id="app">
+        <button id="BTNSettings" @click="showSettings">
+            <img src="./externalFiles/settings.svg" alt="settings">
+        </button>
+        <h1 class="text">{{title}}</h1>
+        <h3 class="text">Applications per click : {{clickPower}} | Passive Applications : {{passiveCv}}</h3>
+        <div id="counter">
+            <h2 id="count" class="text">{{Cv}}</h2>
+            <h2 class="text">Applications Pending</h2>
+        </div>
+        <button class="clickButton" class="button" id="mainButton" @click="increment">Apply</button>
+        <button class="buttonSwitch" class="button" v-if="upgradesShown" @click="showUpgrades">Hide Upgrades</button>
+        <button class="buttonSwitch" v-else @click="showUpgrades">Show Upgrades</button>
+        <div id="upgradeList" v-show="upgradesShown"> 
+            <div class="upgrade" v-for="(up,index) in upgrades" :key="index">
+                <div v-if="upgrades[index].cost!=-1">
+                    <h3 class="text">{{upgrades[index].title}}</h3>
+                    <p class="text">{{upgrades[index].description}}</p>
+                    <p class="text">{{upgrades[index].effect}}</p>
+                    <p class="text" v-if="AMOUNT_UNLOCK-upgrades[index].amountBought>0">Amount until next upgrade : {{AMOUNT_UNLOCK-upgrades[index].amountBought}}</p>
+                    <button class="clickButton" class="button" @mouseenter="(event) => checkCost(index,event)" @click="processUpgrade(index)">Upgrade (Get rejected on {{upgrades[index].cost}} applications)</button>
+                    
+                </div>
+                
+            </div>
+        </div>
+        <div v-else>
+            <p class="text" v-show="!upgradesShown">No upgrades shown</p>
+        </div>
+        <div v-show="settingsShown" class = "popup" id="movePopup">
+            <div class="BTNClose">
+                <button @click="showSettings">
+                    <img src="./externalFiles/close.svg" alt="leave">
+                </button>
+            </div>
+
+            <h3>Change the interface</h3>
+            <input type="color" id="col1" value="#ffffff">Background color</input>
+            <input type="color" id="col2" value="#000000">Text color</input>
+
+            <button  class="clickButton"  onclick="addTwoColors()">Add new theme</button>
+            <table>
+                <tbody>
+                    <tr>
+                        <!-- TODO : turn this & the functions into a vuejs thing -->
+                        <th>Background Color</th>
+                        <th>Text Color</th>
+                    </tr>
+                    <tr>
+                        <td>AliceBlue </td>
+                        <td>LightPink </td>
+                    </tr>
+                    <tr>
+                        <td>teal </td>
+                        <td>lemonChiffon </td>
+                    </tr>
+                    <tr>
+                        <td>RoyalBlue</td>
+                        <td>Orchid</td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</body>
+</html>
