@@ -8,6 +8,9 @@
     <link href="./style/style.css" rel="stylesheet" />
     <link href="./style/giganticButtonsStyle.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap');
+    </style>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js" defer></script>
     <script src="./scripts/main.js" defer></script> 
     
@@ -26,7 +29,10 @@
             <h2 id="count" class="text">{{Cv}}</h2>
             <h2 class="text">Applications Pending</h2>
         </div>
-        <button class="clickButton" class="button" id="mainButton" @click="increment">Apply</button>
+        <button id="mainButton" @click="increment">
+            <img style="max-width: 3vw" src="./externalFiles/linkedin-svgrepo-com.svg">
+            <span>Apply</span>
+        </button>
         <button class="buttonSwitch" class="button" v-if="upgradesShown" @click="showUpgrades">Hide Upgrades</button>
         <button class="buttonSwitch" v-else @click="showUpgrades">Show Upgrades</button>
         <div id="upgradeList" v-show="upgradesShown"> 
