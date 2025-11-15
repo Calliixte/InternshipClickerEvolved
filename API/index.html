@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Test API REST</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 20px;
+      background: #f9f9f9;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    input, select, textarea, button {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      font-size: 14px;
+    }
+    textarea {
+      height: 120px;
+    }
+    pre {
+      background: #222;
+      color: #0f0;
+      padding: 15px;
+      border-radius: 5px;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Client de test API REST</h2>
+
+  <label for="url">URL de l’API :</label>
+  <input type="text" id="url" placeholder="Ex: http://localhost:3000/api/users" />
+
+  <label for="method">Méthode :</label>
+  <select id="method">
+    <option>GET</option>
+    <option>POST</option>
+    <option>PUT</option>
+    <option>PATCH</option>
+    <option>DELETE</option>
+  </select>
+
+  <label for="headers">Headers (JSON) :</label>
+  <textarea id="headers" placeholder='{"Content-Type": "application/json"}'></textarea>
+
+  <label for="body">Corps de la requête (JSON) :</label>
+  <textarea id="body" placeholder='{"name": "Alice"}'></textarea>
+
+  <button id="send">Envoyer la requête</button>
+
+  <h3>Réponse :</h3>
+  <pre id="response">—</pre>
+
+  <script>
+    document.getElementById("send").addEventListener("click", async () => {
+      let url = document.getElementById("url").value;
+      const method = document.getElementById("method").value;
+      const headersText = document.getElementById("headers").value;
+      const bodyText = document.getElementById("body").value;
+      const responseBox = document.getElementById("response");
+
+      let options = { method };
+
+      try {
+        if (headersText.trim()) {
+          options.headers = JSON.parse(headersText);
+        }
+        if (bodyText.trim() && method !== "GET" && method !== "DELETE") {
+          options.body = bodyText;
+        }
+        // if(method==="GET"){
+        //     url +=  "?table=User"
+        // }
+
+        const res = await fetch(url, options);
+        const text = await res.text();
+
+        let formatted;
+        try {
+          formatted = JSON.stringify(JSON.parse(text), null, 2);
+        } catch {
+          formatted = text;
+        }
+
+        responseBox.textContent = `Status: ${res.status} ${res.statusText}\n\n${formatted}`;
+      } catch (err) {
+        responseBox.textContent = "Erreur : " + err.message;
+      }
+    });
+  </script>
+
+</body>
+</html>
