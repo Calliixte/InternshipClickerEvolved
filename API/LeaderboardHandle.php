@@ -5,9 +5,9 @@ class LeaderboardHandle
 {
 public static function handleGet($params){    
     $db = new myDB();
-    $result = $db->query('SELECT * FROM leaderboard ORDER BY SCORE DESC'); //trié par défaut comme ça pas besoin de le faire en front
+    $result = $db->query("SELECT id_lb,l.id_user,name, score FROM leaderboard l INNER JOIN user u on u.id_user = l.id_user ORDER BY SCORE DESC"); //trié par défaut comme ça pas besoin de le faire en front
     while($row = $result -> fetchArray()){
-        $ar[] = array("id_lb"=>$row["id_lb"],"id_user"=>$row["id_user"],"score"=>$row["score"]);   
+        $ar[] = array("id_lb"=>$row["id_lb"],"id_user"=>$row["id_user"],"name"=>$row["name"],"score"=>$row["score"]);   
     }
     return $ar;
 }

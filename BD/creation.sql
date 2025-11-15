@@ -46,9 +46,10 @@ INSERT INTO upgrade (id_upgrade, title, subtitle, effect_description, called_met
 
 
 INSERT INTO user VALUES
-(0,'Bronze'),
-(1,'Silver'),
-(2,'Gold');
+(0,'Anonymous User');
+(1,'Bronze'),
+(2,'Silver'),
+(3,'Gold');
 
 INSERT INTO leaderboard VALUES
 (0,0,500),

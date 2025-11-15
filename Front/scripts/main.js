@@ -1,5 +1,5 @@
 
-const baseUrl = "http://localhost/InternshipClickerEvolved/API/api.php";
+const API_URL = "http://localhost/InternshipClickerEvolved/API/api.php";
 const app = Vue.createApp({
     data () {
         return{
@@ -16,21 +16,22 @@ const app = Vue.createApp({
             upgrades : null,
             keysPressed : {},
             codeCounter : 0,
+            leaderboard : null,
+            username : "Anonymous User",
         };
     },
     async mounted(){
     window.addEventListener("keydown", this.handleKeydown);
     window.addEventListener("keyup", this.handleKeyup);
     let options = { "method" : "GET"}
-    let fullUrl = baseUrl + "?table=upgrade";
-    console.log("full url : "+fullUrl);
-    const response = await fetch(baseUrl + "?table=upgrade", options)
+    const response = await fetch(API_URL + "?table=upgrade", options)
             .then(response=>response.json())
             .then(data=>{
                 this.upgrades = data;
                 this.upgradesNb= this.upgrades.length;
             })
             .catch(error=>console.error('JSON fetch error : ',error));
+    this.loadLB();
     },
     beforeUnmount() {
         //since this is single page app removing the event listeners is not needed but i include it for best practices
@@ -54,7 +55,7 @@ const app = Vue.createApp({
             this.keysPressed = {}; // Remove key from active list
         },
         checkCheat(newKey){ //↑↑↓↓←→←→B A Start 
-            //right now this loads the code into memory each time so it takes more ressource than needed,
+            //right now this loads the code into memory each time so it takes more ressources than needed,
             //either pass a code as a parameter or make it a data(){} variable for better
             const code = ["ArrowUp","ArrowUp","ArrowDown","ArrowDown","ArrowLeft","ArrowRight","ArrowLeft","ArrowRight","b","a","Enter"];
             if(newKey === code[this.codeCounter]){
@@ -150,6 +151,36 @@ const app = Vue.createApp({
                 }
 
         },
+        async submitScore(){
+            options = 
+            {
+                "method":"POST",
+
+                body : JSON.stringify({
+                    "table": "leaderboard",
+                    "id_lb":16,
+                    "id_user":0,
+                    "score" : 15,
+                })
+            };
+            const lbResponse = await fetch(API_URL, options)
+            .then(response=>response.json())
+            .then(data=>{
+                this.leaderboard = data;
+            })
+            .catch(error=>console.error('JSON fetch error : ',error));
+
+            this.loadLB(); //reload with new score
+        },
+        async loadLB(){
+            let options = { "method" : "GET"}
+            const lbResponse = await fetch(API_URL + "?table=leaderboard", options)
+            .then(response=>response.json())
+            .then(data=>{
+                this.leaderboard = data;
+            })
+            .catch(error=>console.error('JSON fetch error : ',error));
+        }
     }
 
 })
