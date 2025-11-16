@@ -1,5 +1,5 @@
 
-const API_URL = "http://localhost/InternshipClickerEvolved/API/api.php";
+const API_URL = "http://localhost:8000/api.php";
 
 const app = Vue.createApp({
     data () {
@@ -30,7 +30,7 @@ const app = Vue.createApp({
     window.addEventListener("keyup", this.handleKeyup);
     let options = { "method" : "GET"}
 
-    const response = await fetch(API_URL + "?table=upgrade", options) //recupere les upgrades de l'api
+    const response = await fetch(API_URL + "?table=Upgrade", options) //recupere les upgrades de l'api
             .then(response=>response.json())
             .then(data=>{
                 //loop sur chaque langue et on fait le meme format que pour texts.json
@@ -180,7 +180,7 @@ const app = Vue.createApp({
                 "method":"POST",
 
                 body : JSON.stringify({
-                    "table": "leaderboard",
+                    "table": "Leaderboard",
                     "user_name":this.username,
                     "score" : this.Cv,
                 })
@@ -196,7 +196,7 @@ const app = Vue.createApp({
         },
         async loadLB(){
             let options = { "method" : "GET"}
-            const lbResponse = await fetch(API_URL + "?table=leaderboard", options)
+            const lbResponse = await fetch(API_URL + "?table=Leaderboard", options)
             .then(response=>response.json())
             .then(data=>{
                 this.leaderboard = data.slice(0,5);
@@ -257,54 +257,3 @@ app.mount('#app');
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
-
-// purely javascript no vuejs as it is work done in uni that i just
-// imported on there
-function dynamicCol(){ 
-    const cases = document.querySelectorAll("body table tr td");
-    cases.forEach((element) => element.style.backgroundColor=element.innerText);
-}
-
-
-function changeColor(e){
-    const text = document.querySelectorAll("body .text");
-    const btnBg = document.querySelectorAll("body .clickButton,.buttonSwitch");
-    let ligne=e.target.parentElement.innerText;
-    const colors = ligne.split("\t");
-    const fgCol = colors[1];
-    const bgCol = colors[0];
-    const bg= document.querySelector("body");
-    bg.style.backgroundColor=bgCol;
-    text.forEach((element) => element.style.color=fgCol);
-    btnBg.forEach((element) => {
-        element.style.backgroundColor=fgCol;
-        element.style.color=bgCol;
-    });
-}
-
-
-function colorText(){
-    const p = document.querySelector('body table');
-    p.addEventListener('click',changeColor);
-}
-
-function addTwoColors(){
-    const col1 = document.getElementById("col1");
-    const col2 = document.getElementById("col2");
-    premiereCouleur = col1.value;
-    secondeCouleur=col2.value;
-    const nt1 = document.createTextNode(premiereCouleur);
-    const nt2 = document.createTextNode(secondeCouleur);
-    const tableau = document.querySelector("body table");
-    let Ligne = document.createElement("tr");
-    let case1 = document.createElement("td");
-    let case2 = document.createElement("td");
-    case1.appendChild(nt1);case2.appendChild(nt2);
-    Ligne.appendChild(case1);Ligne.appendChild(case2);
-    tableau.appendChild(Ligne);
-    dynamicCol(); 
-}
-
-
-document.addEventListener("DOMContentLoaded",(event => {dynamicCol()}));
-document.addEventListener("DOMContentLoaded",(event => {colorText()}));
