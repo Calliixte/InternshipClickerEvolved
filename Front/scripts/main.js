@@ -19,6 +19,7 @@ const app = Vue.createApp({
             leaderboard : null,
             appTexts : null,
             currentLanguage : 'en',
+            darkMode : true,
             username : "Anonymous User",
         };
     },
@@ -196,6 +197,40 @@ const app = Vue.createApp({
                 this.leaderboard = data.slice(0,5);
             })
             .catch(error=>console.error('JSON fetch error : ',error));
+        },
+        changeTheme(){
+            const text = document.querySelectorAll("body .text");
+            const btnBg = document.querySelectorAll("body .clickButton,.buttonSwitch");
+            let colors = ["White","Black"];
+            if(this.darkMode){
+                colors = ["#303234","#dbdbdbff"];
+            }
+            const bgCol = colors[0];
+            const fgCol = colors[1];
+            const bg= document.querySelector("body");
+            bg.style.backgroundColor=bgCol;
+            text.forEach((element) => element.style.color=fgCol);
+            btnBg.forEach((element) => {
+                element.style.backgroundColor=fgCol;
+                element.style.color=bgCol;
+            });
+
+            //popup section
+            const popup =document.getElementById("popup");
+            const popupText = popup.querySelectorAll(".text");
+            if(this.darkMode){
+                popup.classList.remove('popup-light');
+                popup.classList.add('popup-dark');
+                popupText.forEach((element)=>element.style.color = "White");
+            }else{
+                popup.classList.remove('popup-dark');
+                popup.classList.add('popup-light');
+                popupText.forEach((element)=>element.style.color = "Black");
+            }
+
+        
+
+            this.darkMode = !this.darkMode;
         }
     }
 
@@ -212,6 +247,8 @@ function dynamicCol(){
     const cases = document.querySelectorAll("body table tr td");
     cases.forEach((element) => element.style.backgroundColor=element.innerText);
 }
+
+
 function changeColor(e){
     const text = document.querySelectorAll("body .text");
     const btnBg = document.querySelectorAll("body .clickButton,.buttonSwitch");
@@ -227,10 +264,13 @@ function changeColor(e){
         element.style.color=bgCol;
     });
 }
+
+
 function colorText(){
     const p = document.querySelector('body table');
     p.addEventListener('click',changeColor);
 }
+
 function addTwoColors(){
     const col1 = document.getElementById("col1");
     const col2 = document.getElementById("col2");
@@ -249,34 +289,5 @@ function addTwoColors(){
 }
 
 
-
-let totalMovementX = 0; //toutes les images ont le meme décalage par contre
-let totalMovementY = 0;  // à fix en recuperant les valeurs au préalable
-function move_img1(event){
-    if(event.buttons === 1 ||event.buttons === 3){
-        
-        let cadreActuel = document.getElementById("movePopup");
-        cadreActuel.style.cursor = "grab";
-        if(event.target.type!=HTMLDivElement){
-            cadreActuel = event.target.parentElement;
-        }else{
-            cadreActuel = event.target;
-        }
-        let moveX = event.movementX;
-        let moveY = event.movementY;
-        totalMovementX+=moveX;
-        totalMovementY+=moveY;
-        cadreActuel.style.left=totalMovementX+"px";
-        cadreActuel.style.top=totalMovementY+"px";
-    }
-
-}
-function move_img(){
-    console.log("test")
-}
-
-document.addEventListener("DOMContentLoaded",event =>{
-    document.getElementById("movePopup").addEventListener("mousemove",move_img1);
-})
 document.addEventListener("DOMContentLoaded",(event => {dynamicCol()}));
 document.addEventListener("DOMContentLoaded",(event => {colorText()}));
