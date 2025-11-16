@@ -15,18 +15,11 @@ CREATE TABLE upgrade
     amountBought INT
 );
 
-CREATE TABLE user
-(
-    id_user INT PRIMARY KEY,
-    name VARCHAR(50)
-);
-
 CREATE TABLE leaderboard
 (
-    id_lb INT PRIMARY KEY,
-    id_user INT,
-    score INT,
-    FOREIGN KEY(id_user) REFERENCES user(id_user)
+    id_lb INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_name VARCHAR(50),
+    score INT
 );
 
 INSERT INTO upgrade (id_upgrade, title, subtitle, effect_description, called_method, cost, baseCost, amountBought) VALUES
@@ -45,13 +38,7 @@ INSERT INTO upgrade (id_upgrade, title, subtitle, effect_description, called_met
 (6, 'Bake cookies', 'wait you need to get rejected by companies to have cookies ? This game designer is weird', 'Does nothing, you can still actually go bake cookies', 'initUpgrade', -1, 1, 0);
 
 
-INSERT INTO user VALUES
-(0,'Anonymous User');
-(1,'Bronze'),
-(2,'Silver'),
-(3,'Gold');
-
 INSERT INTO leaderboard VALUES
-(0,0,500),
-(1,1,5000),
-(2,2,10000);
+(0,'Bronze',500),
+(1,'Silver',5000),
+(2,'Gold',10000);
