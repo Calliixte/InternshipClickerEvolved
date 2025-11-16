@@ -5,7 +5,7 @@
 body {
     display : flex;
     justify-content:center;
-    background-color: aliceblue;
+    background-color: white;
     font-family: 'Poppins', sans-serif;
 }
 body div{
@@ -18,11 +18,10 @@ body h1{
     font-size: 28px;
 }
 
-
 #count{
         align-self: center;
-        color:pink;
         font-size: 50px;
+        color : #0a66c2;
 }
 
 .BTNSettings{
@@ -105,15 +104,23 @@ table td::after {
 
 
 .popup table, .popup tr, .popup th, .popup td {
-    border: 1px solid black;
+    border: 1px solid; 
     position: relative;
 }
 
-
-.popup table tr:hover {
-    border: 8px solid pink;
-    cursor: pointer;
+.popup-light table,
+.popup-light th,
+.popup-light td {
+    border-color: black;
 }
+
+.popup-dark table,
+.popup-dark th,
+.popup-dark td {
+    border-color: white;
+}
+
+
 
 
 .popup, .popup table, .popup td {

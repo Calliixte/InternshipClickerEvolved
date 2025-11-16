@@ -77,15 +77,14 @@
             <h1 class="text">{{appTexts["title"][currentLanguage]}}</h1>
             <h3 class="text">{{appTexts["ratePerClick"][currentLanguage]}}: {{clickPower}} | {{appTexts["ratePassive"][currentLanguage]}}: {{passiveCv}}</h3>
             <div id="counter">
-                <h2 id="count" class="text">{{Cv}}</h2>
-                <h2 class="text">{{appTexts["pendingApplications"][currentLanguage]}}</h2>
+                <h2 id="count" >{{Cv}}</h2>
+                <h2 class="text" style="align-self: center;">{{appTexts["pendingApplications"][currentLanguage]}}</h2>
             </div>
             <button id="mainButton" @click="increment">
                 <img style="max-width: 3vw" src="./externalFiles/linkedin-svgrepo-com.svg">
                 <span>{{appTexts["mainButton"][currentLanguage]}}</span>
             </button>
-            <button class="buttonSwitch" class="button" v-if="upgradesShown" @click="showUpgrades">{{appTexts["hideUpgrades"][currentLanguage]}}</button>
-            <button class="buttonSwitch" v-else @click="showUpgrades">{{appTexts["showUpgrades"][currentLanguage]}}</button>
+            <button class="switchButton" class="button" @click="showUpgrades">{{upgradesShown ? appTexts["hideUpgrades"][currentLanguage] : appTexts["showUpgrades"][currentLanguage]}}</button>
             <div id="upgradeList" v-show="upgradesShown"> 
                 <div class="upgrade" v-for="(up,index) in upgrades" :key="index">
                     <div v-if="upgrades[index].cost!=-1">

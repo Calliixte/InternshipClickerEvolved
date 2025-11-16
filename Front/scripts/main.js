@@ -43,6 +43,8 @@ const app = Vue.createApp({
             this.appTexts = data;
         })
         .catch(error=>console.error('JSON fetch error : ',error));
+
+    
     },
     beforeUnmount() {
         //since this is single page app removing the event listeners is not needed but i include it for best practices
@@ -199,7 +201,7 @@ const app = Vue.createApp({
         },
         changeTheme(){
             const text = document.querySelectorAll("body .text");
-            const btnBg = document.querySelectorAll("body .clickButton,.buttonSwitch");
+            const btnBg = document.querySelectorAll("body .clickButton,.switchButton");
             let colors = ["White","Black"];
             if(this.darkMode){
                 colors = ["#303234","#dbdbdbff"];

@@ -7,6 +7,8 @@
   padding-right: 16px;
   padding-top: 8px;
   padding-bottom: 8px;
+  margin-top: 1vh;
+  margin-bottom : 2vh;
   max-width: 35vw;
   align-self: center;
   border-radius: 22px;
@@ -14,8 +16,16 @@
 }
 #mainButton:hover{
   background-color: #004182;
-
+  transform: translateY(-2px);
 }
+  
+#mainButton:active {
+  box-shadow: none;
+  transform: translateY(0px);
+}
+
+
+
 #mainButton span{
   color : white;
   font-family: "Source Sans 3", sans-serif;
@@ -28,7 +38,7 @@
 /* Obviously stolen from the internet : https://getcssscan.com/css-buttons-examples */
 .clickButton {
     appearance: none;
-    background-color: lightblue;
+    background-color: black;
     border: 2px solid #1A1A1A;
     border-radius: 15px;
     box-sizing: border-box;
@@ -61,8 +71,9 @@
   }
   
   .clickButton:hover {
+    color : #0a66c2;
     box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
-    transform: translateY(-2px);
+    transform: translateY(-1px);
   }
   
   .clickButton:active {
@@ -71,11 +82,11 @@
   }
 
 
-  .buttonSwitch {
+   .switchButton {
     align-items: center;
-    background-color: lightpink;
+    background-color: black;
     border-radius: 15px;
-    color: #fff;
+    color: white;
     cursor: pointer;
     display: flex;
     font-family: ui-sans-serif,system-ui,-apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
@@ -89,8 +100,8 @@
     padding: 1rem;
   }
   
-  .buttonSwitch:before {
-    background-color: #fff;
+  .switchButton:before {
+    background-color: #0a66c2;
     content: "";
     display: inline-block;
     height: 1px;
@@ -99,10 +110,10 @@
     width: 0;
   }
   
-  .buttonSwitch:hover:before {
-    background-color: #fff;
+  .switchButton:hover:before {
+    background-color: #0a66c2;
     width: 3rem;
   }
-
+ 
 
   
