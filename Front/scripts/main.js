@@ -35,7 +35,6 @@ const app = Vue.createApp({
                 this.upgradesNb= this.upgrades.length;
             })
             .catch(error=>console.error('JSON fetch error : ',error));
-
     this.loadLB(); //idem pour le leaderboard 
 
     fetch('./externalFiles/texts.json')
