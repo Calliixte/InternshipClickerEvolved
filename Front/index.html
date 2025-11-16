@@ -20,93 +20,107 @@
 <body>
     
     <div id="app">
-        <button id="BTNSettings" @click="showSettings">
-            <img src="./externalFiles/settings.svg" alt="settings">
-        </button>
-        <h1 class="text">{{title}}</h1>
-        <h3 class="text">Applications per click : {{clickPower}} | Passive Applications : {{passiveCv}}</h3>
-        <div id="counter">
-            <h2 id="count" class="text">{{Cv}}</h2>
-            <h2 class="text">Applications Pending</h2>
-        </div>
-        <button id="mainButton" @click="increment">
-            <img style="max-width: 3vw" src="./externalFiles/linkedin-svgrepo-com.svg">
-            <span>Apply</span>
-        </button>
-        <button class="buttonSwitch" class="button" v-if="upgradesShown" @click="showUpgrades">Hide Upgrades</button>
-        <button class="buttonSwitch" v-else @click="showUpgrades">Show Upgrades</button>
-        <div id="upgradeList" v-show="upgradesShown"> 
-            <div class="upgrade" v-for="(up,index) in upgrades" :key="index">
-                <div v-if="upgrades[index].cost!=-1">
-                    <h3 class="text">{{upgrades[index].title}}</h3>
-                    <p class="text">{{upgrades[index].subtitle}}</p>
-                    <p class="text">{{upgrades[index].effect_description}}</p>
-                    <p class="text" v-if="AMOUNT_UNLOCK-upgrades[index].amountBought>0">Amount until next upgrade : {{AMOUNT_UNLOCK-upgrades[index].amountBought}}</p>
-                    <button class="clickButton" class="button" @mouseenter="(event) => checkCost(index,event)" @click="processUpgrade(index)">Upgrade (Get rejected on {{upgrades[index].cost}} applications)</button>
+        <div v-if="appTexts">
+            <button id="BTNSettings" @click="showSettings">
+                <img src="./externalFiles/settings.svg" alt="settings">
+            </button>
+            <h1 class="text">{{appTexts["title"][currentLanguage]}}</h1>
+            <h3 class="text">{{appTexts["ratePerClick"][currentLanguage]}}: {{clickPower}} | {{appTexts["ratePassive"][currentLanguage]}}: {{passiveCv}}</h3>
+            <div id="counter">
+                <h2 id="count" class="text">{{Cv}}</h2>
+                <h2 class="text">{{appTexts["pendingApplications"][currentLanguage]}}</h2>
+            </div>
+            <button id="mainButton" @click="increment">
+                <img style="max-width: 3vw" src="./externalFiles/linkedin-svgrepo-com.svg">
+                <span>{{appTexts["mainButton"][currentLanguage]}}</span>
+            </button>
+            <button class="buttonSwitch" class="button" v-if="upgradesShown" @click="showUpgrades">{{appTexts["hideUpgrades"][currentLanguage]}}</button>
+            <button class="buttonSwitch" v-else @click="showUpgrades">{{appTexts["showUpgrades"][currentLanguage]}}</button>
+            <div id="upgradeList" v-show="upgradesShown"> 
+                <div class="upgrade" v-for="(up,index) in upgrades" :key="index">
+                    <div v-if="upgrades[index].cost!=-1">
+                        <h3 class="text">{{upgrades[index].title}}</h3>
+                        <p class="text">{{upgrades[index].subtitle}}</p>
+                        <p class="text">{{upgrades[index].effect_description}}</p>
+                        <p class="text" v-if="AMOUNT_UNLOCK-upgrades[index].amountBought>0">Amount until next upgrade : {{AMOUNT_UNLOCK-upgrades[index].amountBought}}</p>
+                        <button class="clickButton" class="button" @mouseenter="(event) => checkCost(index,event)" @click="processUpgrade(index)">{{appTexts["upgrade"][currentLanguage]}} ({{appTexts["rejectedOn"][currentLanguage]}} {{upgrades[index].cost}} {{appTexts["applications"][currentLanguage]}})</button>
+                        
+                    </div>
                     
                 </div>
+            </div>
+            <div v-else>
+                <p class="text" v-show="!upgradesShown">{{appTexts["noUShown"][currentLanguage]}}</p>
+            </div>
+    
+            <div v-show="settingsShown" class = "popup" id="movePopup">
+                <div class="BTNClose">
+                    <button @click="showSettings">
+                        <img src="./externalFiles/close.svg" alt="leave">
+                    </button>
+                </div>
+    
+                <div class="leaderboard">
                 
-            </div>
-        </div>
-        <div v-else>
-            <p class="text" v-show="!upgradesShown">No upgrades shown</p>
-        </div>
-
-        <div v-show="settingsShown" class = "popup" id="movePopup">
-            <div class="BTNClose">
-                <button @click="showSettings">
-                    <img src="./externalFiles/close.svg" alt="leave">
-                </button>
-            </div>
-
-            <div class="leaderboard">
-            
-            </div>
-
-            <h3>Change the interface</h3>
-            <input type="color" id="col1" value="#ffffff">Background color</input>
-            <input type="color" id="col2" value="#000000">Text color</input>
-
-            <button  class="clickButton"  onclick="addTwoColors()">Add new theme</button>
-            <table>
-                <tbody>
-                    <tr>
-                        <!-- TODO : turn this & the functions into a vuejs thing -->
-                        <th>Background Color</th>
-                        <th>Text Color</th>
-                    </tr>
-                    <tr>
-                        <td>AliceBlue </td>
-                        <td>LightPink </td>
-                    </tr>
-                    <tr>
-                        <td>teal </td>
-                        <td>lemonChiffon </td>
-                    </tr>
-                    <tr>
-                        <td>RoyalBlue</td>
-                        <td>Orchid</td>
-                    </tr>
-                </tbody>
-            </table>
-            <div v-if="leaderboard !=null">
-                <h3>Leaderboard (Top 5 scores)</h3>
+                </div>
+    
+                <h3>{{appTexts["interfaceChange"][currentLanguage]}}</h3>
+                <input type="color" id="col1" value="#ffffff">{{appTexts["backgroundC"][currentLanguage]}}</input>
+                <input type="color" id="col2" value="#000000">{{appTexts["textC"][currentLanguage]}}</input>
+    
+                <button  class="clickButton"  onclick="addTwoColors()">{{appTexts["newTheme"][currentLanguage]}}</button>
                 <table>
                     <tbody>
-                        <tr v-for="(lb,index) in leaderboard">
-                            <td :style="{ 'background-color': getRankColor(index) }">
-                            {{ leaderboard[index].user_name }}
-                            </td>
-                            <td>{{leaderboard[index].score}}</td>
+                        <tr>
+
+                            <th>{{appTexts["backgroundC"][currentLanguage]}}</th>
+                            <th>{{appTexts["textC"][currentLanguage]}}</th>
+                        </tr>
+                        <tr>
+                            <td>AliceBlue </td>
+                            <td>LightPink </td>
+                        </tr>
+                        <tr>
+                            <td>teal </td>
+                            <td>lemonChiffon </td>
+                        </tr>
+                        <tr>
+                            <td>RoyalBlue</td>
+                            <td>Orchid</td>
                         </tr>
                     </tbody>
                 </table>
+                <div v-if="leaderboard !=null">
+                    <h3>{{appTexts["leaderboardTopFive"][currentLanguage]}}</h3>
+                    <table>
+                        <tbody>
+                            <tr v-for="(lb,index) in leaderboard">
+                                <td :style="{ 'background-color': getRankColor(index) }">
+                                {{ leaderboard[index].user_name }}
+                                </td>
+                                <td>{{leaderboard[index].score}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+    
+                    <label for="name">{{appTexts["username"][currentLanguage]}}</label>
+                    <input id="name" type="text" v-model="username">
+                    <button @click="submitScore">{{appTexts["submitScore"][currentLanguage]}}</button>
+    
+                </div>
+                <div>
+                    <h3>{{appTexts["language"][currentLanguage]}}</h3>
+                    <label for="language">{{appTexts["pickLanguage"][currentLanguage]}}</label>
 
-                <label for="name">Username</label>
-                <input id="name" type="text" v-model="username">
-                <button @click="submitScore">Submit Current Score</button>
+                    <select v-model="currentLanguage" name="langugage" id="language">
+                    <option value="fr">Français</option>
+                    <option value="en">English</option>
+                    <option value="emojis">✅</option>
+                    </select>
 
+                </div>
             </div>
+
         </div>
 
 

@@ -17,6 +17,8 @@ const app = Vue.createApp({
             keysPressed : {},
             codeCounter : 0,
             leaderboard : null,
+            appTexts : null,
+            currentLanguage : 'en',
             username : "Anonymous User",
         };
     },
@@ -24,14 +26,23 @@ const app = Vue.createApp({
     window.addEventListener("keydown", this.handleKeydown);
     window.addEventListener("keyup", this.handleKeyup);
     let options = { "method" : "GET"}
-    const response = await fetch(API_URL + "?table=upgrade", options)
+
+    const response = await fetch(API_URL + "?table=upgrade", options) //recupere les upgrades de l'api
             .then(response=>response.json())
             .then(data=>{
                 this.upgrades = data;
                 this.upgradesNb= this.upgrades.length;
             })
             .catch(error=>console.error('JSON fetch error : ',error));
-    this.loadLB();
+
+    this.loadLB(); //idem pour le leaderboard 
+
+    fetch('./externalFiles/texts.json')
+        .then(response=>response.json())
+        .then(data=>{
+            this.appTexts = data;
+        })
+        .catch(error=>console.error('JSON fetch error : ',error));
     },
     beforeUnmount() {
         //since this is single page app removing the event listeners is not needed but i include it for best practices
