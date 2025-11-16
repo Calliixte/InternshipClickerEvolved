@@ -1,5 +1,6 @@
 
 const API_URL = "http://localhost/InternshipClickerEvolved/API/api.php";
+
 const app = Vue.createApp({
     data () {
         return{
@@ -23,6 +24,7 @@ const app = Vue.createApp({
             username : "Anonymous User",
         };
     },
+
     async mounted(){
     window.addEventListener("keydown", this.handleKeydown);
     window.addEventListener("keyup", this.handleKeyup);
@@ -47,6 +49,7 @@ const app = Vue.createApp({
 
     
     },
+    
     beforeUnmount() {
         //since this is single page app removing the event listeners is not needed but i include it for best practices
         window.removeEventListener("keydown", this.handleKeydown);

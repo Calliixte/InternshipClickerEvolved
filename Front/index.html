@@ -1,5 +1,7 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,15 +15,16 @@
     </style>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js" defer></script>
     <script src="./scripts/main.js" defer></script> 
-    
     <!-- defer forces the browser to load the file as soon as it encounters it, eliminating the need to put the script tags at the end of the body,
      i'd rather use that in order to keep the code cleaner -->
 </head>
+
 <body>
-    
     <div id="app">
         <div v-if="appTexts">
             <div class="top-row">
+
+                <!-- Bouton dark mode  -->
                 <button class="BTNSettings" id="DMSwitch" @click="changeTheme">
                     <span v-if="darkMode"><?xml version="1.0" encoding="utf-8"?>
     
@@ -36,9 +39,9 @@
                         <path d="M12 3V4M12 20V21M4 12H3M6.31412 6.31412L5.5 5.5M17.6859 6.31412L18.5 5.5M6.31412 17.69L5.5 18.5001M17.6859 17.69L18.5 18.5001M21 12H20M16 12C16 14.2091 14.2091 16 12 16C9.79086 16 8 14.2091 8 12C8 9.79086 9.79086 8 12 8C14.2091 8 16 9.79086 16 12Z" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg></span>
                 </button>
-    
+
+                <!-- Bouton paramètres  -->
                 <button class="BTNSettings" @click="showSettings">
-    
                     <!-- SVG de la roue des parametres -->
                     <?xml version="1.0" encoding="iso-8859-1"?>
                         <svg :fill="darkMode ? 'Black' : 'White'" height="40px" width="40px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
@@ -73,18 +76,22 @@
             </div>
 
 
-
             <h1 class="text">{{appTexts["title"][currentLanguage]}}</h1>
+
             <h3 class="text">{{appTexts["ratePerClick"][currentLanguage]}}: {{clickPower}} | {{appTexts["ratePassive"][currentLanguage]}}: {{passiveCv}}</h3>
+
             <div id="counter">
                 <h2 id="count" >{{Cv}}</h2>
                 <h2 class="text" style="align-self: center;">{{appTexts["pendingApplications"][currentLanguage]}}</h2>
             </div>
+
             <button id="mainButton" @click="increment">
                 <img style="max-width: 3vw" src="./externalFiles/linkedin-svgrepo-com.svg">
                 <span>{{appTexts["mainButton"][currentLanguage]}}</span>
             </button>
+
             <button class="switchButton" class="button" @click="showUpgrades">{{upgradesShown ? appTexts["hideUpgrades"][currentLanguage] : appTexts["showUpgrades"][currentLanguage]}}</button>
+
             <div id="upgradeList" v-show="upgradesShown"> 
                 <div class="upgrade" v-for="(up,index) in upgrades" :key="index">
                     <div v-if="upgrades[index].cost!=-1">
@@ -93,15 +100,15 @@
                         <p class="text">{{upgrades[index]["effect_description_"+currentLanguage]}}</p>
                         <p class="text" v-if="AMOUNT_UNLOCK-upgrades[index].amountBought>0">{{appTexts["amountNext"][currentLanguage]}} : {{AMOUNT_UNLOCK-upgrades[index].amountBought}}</p>
                         <button class="clickButton" class="button" @mouseenter="(event) => checkCost(index,event)" @click="processUpgrade(index)">{{appTexts["upgrade"][currentLanguage]}} ({{appTexts["rejectedOn"][currentLanguage]}} {{upgrades[index].cost}} {{appTexts["applications"][currentLanguage]}})</button>
-                        
                     </div>
-                    
                 </div>
             </div>
+
             <div v-else>
                 <p class="text" v-show="!upgradesShown">{{appTexts["noUShown"][currentLanguage]}}</p>
             </div>
     
+            <!-- settings popup code  -->
             <div v-show="settingsShown" class="popup-light popup" id="popup">
                 <div class="BTNClose">
                     <button @click="showSettings">
@@ -109,32 +116,7 @@
                     </button>
                 </div>
     
-    
-                <!-- <h3>{{appTexts["interfaceChange"][currentLanguage]}}</h3>
-                <input type="color" id="col1" value="#ffffff">{{appTexts["backgroundC"][currentLanguage]}}</input>
-                <input type="color" id="col2" value="#000000">{{appTexts["textC"][currentLanguage]}}</input>
-    
-                <button  class="clickButton"  onclick="addTwoColors()">{{appTexts["newTheme"][currentLanguage]}}</button>
-                <table class="colors">
-                    <tbody>
-                        <tr>
-                            <th>{{appTexts["backgroundC"][currentLanguage]}}</th>
-                            <th>{{appTexts["textC"][currentLanguage]}}</th>
-                        </tr>
-                        <tr>
-                            <td>AliceBlue</td>
-                            <td>LightPink</td>
-                        </tr>
-                        <tr>
-                            <td>Black</td>
-                            <td>White</td>
-                        </tr>
-                        <tr>
-                            <td>While</td>
-                            <td>Black</td>
-                        </tr>
-                    </tbody>
-                </table> -->
+                <!-- leaderboard code  -->
                 <div v-if="leaderboard !=null">
                     <h3 class="text">{{appTexts["leaderboardTopFive"][currentLanguage]}}</h3>
                     <table>
@@ -151,8 +133,9 @@
                     <label for="name" class="text">{{appTexts["username"][currentLanguage]}}</label>
                     <input id="name" type="text" v-model="username">
                     <button class="clickButton" @click="submitScore" class="text">{{appTexts["submitScore"][currentLanguage]}}</button>
-    
                 </div>
+
+                <!-- language picker -->
                 <div>
                     <h3 class="text">{{appTexts["language"][currentLanguage]}}</h3>
                     <label for="language" class="text">{{appTexts["pickLanguage"][currentLanguage]}}</label>
@@ -162,13 +145,10 @@
                     <option value="en">English</option>
                     <option value="emojis">✅</option>
                     </select>
-
                 </div>
+
             </div>
-
         </div>
-
-
     </div>
 </body>
 </html>
