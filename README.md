@@ -1,5 +1,5 @@
 # Evolved version for class purposes
-## New features (planned)
+## New features (compared to last version (which is available [here](https://github.com/Calliixte/InternshipClicker) ))
  - Leaderboard
  - French translation
  - Quicker dark mode access
@@ -7,16 +7,26 @@
  - Title header
  - Contact/Credits footer
  
-# install & run
+# Install & Run
 
-requirements : internet 
+> requirements : Internet 
 
+```bash
 apt install php
 apt install sqlite3
 apt install php-sqlite3
+```
 
+### Backend
+```bash
 cd API
 php -S localhost:8000
+```
 
+### Frontend
+```bash
 cd Front
-pyhon3 -m http.server 3000
+python3 -m http.server 3000
+```
+
+> //↑↑↓↓←→←→B A Enter 
