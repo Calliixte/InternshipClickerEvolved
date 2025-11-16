@@ -19,7 +19,7 @@ CREATE TABLE leaderboard
 (
     id_lb INTEGER PRIMARY KEY AUTOINCREMENT,
     user_name VARCHAR(50),
-    score INT
+    score REAL --les nombres insérés depuis javascript peuvent être très grands
 );
 
 INSERT INTO upgrade (id_upgrade, title, subtitle, effect_description, called_method, cost, baseCost, amountBought) VALUES
@@ -41,4 +41,5 @@ INSERT INTO upgrade (id_upgrade, title, subtitle, effect_description, called_met
 INSERT INTO leaderboard VALUES
 (0,'Bronze',500),
 (1,'Silver',5000),
-(2,'Gold',10000);
+(2,'Gold',10000),
+(3,'↑↑↓↓←→←→BA↵',100000000000000000000000000000000000000000000000000);
