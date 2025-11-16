@@ -17,6 +17,6 @@
     "leaderboardTopFive":{"fr":"Tableau des scores (Top 5)","en":"Leaderboard (Top 5 scores)","emojis":"🥇🥈🥉🍀🕔"},
     "username":{"fr":"Nom d'utilisateur","en":"Username","emojis":"🪪✒️"},
     "submitScore":{"fr":"Envoyer le score actuel","en":"Submit Current Score","emojis":"📨📨💯"},
-    "language":{"fr":"Langue","en":"Langugage","emojis":"🗣️"},
+    "language":{"fr":"Langue","en":"language","emojis":"🗣️"},
     "pickLanguage":{"fr":"Choisissez une langue","en":"Choose a langugage","emojis":"👅🗣️✅"}
 }
