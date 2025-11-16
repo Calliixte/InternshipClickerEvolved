@@ -128,18 +128,17 @@ table td::after {
     border-bottom: 2px solid black;
 }
 
+/* Footer commun */
 footer {
     display: flex;
     flex-direction: column;
-    align-items: center; 
-    justify-content: center; 
+    align-items: center;
+    justify-content: center;
     padding: 20px 0;
-    background-color: #f8f8f8;
-    border-top: 2px solid #0a66c2; 
     font-family: 'Poppins', sans-serif;
     font-size: 14px;
-    margin-top : 10px;
-    color: #333; 
+    transition: all 0.3s ease;
+    margin-top : 1vh;
 }
 
 footer p {
@@ -152,5 +151,19 @@ footer p:first-child {
 
 footer p:last-child {
     font-style: italic;
-    color: #0a66c2; 
 }
+
+
+.footer-light {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-top: 2px solid #0a66c2;
+
+}
+
+
+.footer-dark {
+    background-color: #303234;
+    border-top: 2px solid #0a66c2;
+
+}
+

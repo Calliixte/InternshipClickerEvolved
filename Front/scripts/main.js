@@ -49,7 +49,7 @@ const app = Vue.createApp({
 
     
     },
-    
+
     beforeUnmount() {
         //since this is single page app removing the event listeners is not needed but i include it for best practices
         window.removeEventListener("keydown", this.handleKeydown);
@@ -231,6 +231,18 @@ const app = Vue.createApp({
                 popup.classList.remove('popup-dark');
                 popup.classList.add('popup-light');
                 popupText.forEach((element)=>element.style.color = "Black");
+            }
+
+            const footer =document.querySelector("footer");
+            const footerText = footer.querySelectorAll(".text");
+            if(this.darkMode){
+                footer.classList.remove('footer-light');
+                footer.classList.add('footer-dark');
+                footerText.forEach((element)=>element.style.color = "White");
+            }else{
+                footer.classList.remove('footer-dark');
+                footer.classList.add('footer-light');
+                footerText.forEach((element)=>element.style.color = "Black");
             }
 
         
