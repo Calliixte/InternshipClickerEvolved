@@ -7,3 +7,16 @@
  - Title header
  - Contact/Credits footer
  
+# install & run
+
+requirements : internet 
+
+apt install php
+apt install sqlite3
+apt install php-sqlite3
+
+cd API
+php -S localhost:8000
+
+cd Front
+pyhon3 -m http.server 3000

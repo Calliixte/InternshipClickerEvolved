@@ -30,7 +30,7 @@ const app = Vue.createApp({
     window.addEventListener("keyup", this.handleKeyup);
     let options = { "method" : "GET"}
 
-    const response = await fetch(API_URL + "?table=upgrade", options) //recupere les upgrades de l'api
+    const response = await fetch(API_URL + "?table=Upgrade", options) //recupere les upgrades de l'api
             .then(response=>response.json())
             .then(data=>{
                 //loop sur chaque langue et on fait le meme format que pour texts.json
@@ -180,7 +180,7 @@ const app = Vue.createApp({
                 "method":"POST",
 
                 body : JSON.stringify({
-                    "table": "leaderboard",
+                    "table": "Leaderboard",
                     "user_name":this.username,
                     "score" : this.Cv,
                 })
@@ -196,7 +196,7 @@ const app = Vue.createApp({
         },
         async loadLB(){
             let options = { "method" : "GET"}
-            const lbResponse = await fetch(API_URL + "?table=leaderboard", options)
+            const lbResponse = await fetch(API_URL + "?table=Leaderboard", options)
             .then(response=>response.json())
             .then(data=>{
                 this.leaderboard = data.slice(0,5);
