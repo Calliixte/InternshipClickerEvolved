@@ -22,6 +22,7 @@
 <body>
     <div id="app">
         <div v-if="appTexts">
+            <header>
             <div class="top-row">
 
                 <!-- Bouton dark mode  -->
@@ -75,8 +76,8 @@
                 </button>
             </div>
 
-
-            <h1 class="text">{{appTexts["title"][currentLanguage]}}</h1>
+                <h1 class="text">{{appTexts["title"][currentLanguage]}}</h1>
+            </header>
 
             <h3 class="text">{{appTexts["ratePerClick"][currentLanguage]}}: {{clickPower}} | {{appTexts["ratePassive"][currentLanguage]}}: {{passiveCv}}</h3>
 
