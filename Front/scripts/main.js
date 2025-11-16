@@ -84,7 +84,7 @@ const app = Vue.createApp({
             this.settingsShown= !this.settingsShown;
         },
         giveMax(){
-            this.Cv+=999999;
+            this.Cv+=99999999999999999999999999999999999999999999999999;
         },
         initUpgrade(id){
             this.upgrades[id].cost=this.upgrades[id].baseCost;
@@ -151,6 +151,12 @@ const app = Vue.createApp({
                 }
 
         },
+          getRankColor(index) {
+            if (index === 0) return 'gold'
+            if (index === 1) return 'silver'
+            if (index === 2) return '#cd7f32' // bronze
+            return ''
+        },
         async submitScore(){
             options = 
             {
@@ -158,9 +164,8 @@ const app = Vue.createApp({
 
                 body : JSON.stringify({
                     "table": "leaderboard",
-                    "id_lb":16,
-                    "id_user":0,
-                    "score" : 15,
+                    "user_name":this.username,
+                    "score" : this.Cv,
                 })
             };
             const lbResponse = await fetch(API_URL, options)
@@ -177,7 +182,7 @@ const app = Vue.createApp({
             const lbResponse = await fetch(API_URL + "?table=leaderboard", options)
             .then(response=>response.json())
             .then(data=>{
-                this.leaderboard = data;
+                this.leaderboard = data.slice(0,5);
             })
             .catch(error=>console.error('JSON fetch error : ',error));
         }
