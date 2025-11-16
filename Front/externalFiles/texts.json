@@ -7,6 +7,7 @@
     "showUpgrades": {"fr":"Montrer les améliorations","en":"Show Upgrades","emojis":"✅⬆️"},
     "hideUpgrades": {"fr":"Cacher les améliorations","en":"Hide Upgrades","emojis":"❌⬆️"},
     "noUShown":{"fr":"Améliorations cachées","en":"Upgrades Hidden","emojis":"❌⬆️"},
+    "amountNext":{"fr":"Quantité à acheter avant de débloquer la prochaine amélioration","en":"Amount until next upgrade","emojis":"🔋⬆️"},
     "upgrade" : {"fr":"Améliorer","en":"Upgrade","emojis":"⬆️⬆️"},
     "rejectedOn":{"fr":"Etre refusé.e à","en":"Get rejected on","emojis":"❌"},
     "applications" : {"fr":"candidatures","en":"applications","emojis":"📰"},

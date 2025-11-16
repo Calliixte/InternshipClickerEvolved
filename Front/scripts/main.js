@@ -31,6 +31,7 @@ const app = Vue.createApp({
     const response = await fetch(API_URL + "?table=upgrade", options) //recupere les upgrades de l'api
             .then(response=>response.json())
             .then(data=>{
+                //loop sur chaque langue et on fait le meme format que pour texts.json
                 this.upgrades = data;
                 this.upgradesNb= this.upgrades.length;
             })

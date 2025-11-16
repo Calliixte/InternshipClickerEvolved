@@ -88,10 +88,10 @@
             <div id="upgradeList" v-show="upgradesShown"> 
                 <div class="upgrade" v-for="(up,index) in upgrades" :key="index">
                     <div v-if="upgrades[index].cost!=-1">
-                        <h3 class="text">{{upgrades[index].title}}</h3>
-                        <p class="text">{{upgrades[index].subtitle}}</p>
-                        <p class="text">{{upgrades[index].effect_description}}</p>
-                        <p class="text" v-if="AMOUNT_UNLOCK-upgrades[index].amountBought>0">Amount until next upgrade : {{AMOUNT_UNLOCK-upgrades[index].amountBought}}</p>
+                        <h3 class="text">{{upgrades[index]["title_"+currentLanguage]}}</h3>
+                        <p class="text">{{upgrades[index]["subtitle_"+currentLanguage]}}</p>
+                        <p class="text">{{upgrades[index]["effect_description_"+currentLanguage]}}</p>
+                        <p class="text" v-if="AMOUNT_UNLOCK-upgrades[index].amountBought>0">{{appTexts["amountNext"][currentLanguage]}} : {{AMOUNT_UNLOCK-upgrades[index].amountBought}}</p>
                         <button class="clickButton" class="button" @mouseenter="(event) => checkCost(index,event)" @click="processUpgrade(index)">{{appTexts["upgrade"][currentLanguage]}} ({{appTexts["rejectedOn"][currentLanguage]}} {{upgrades[index].cost}} {{appTexts["applications"][currentLanguage]}})</button>
                         
                     </div>
