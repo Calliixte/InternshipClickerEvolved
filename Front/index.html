@@ -105,14 +105,14 @@
     
                     <label for="name">{{appTexts["username"][currentLanguage]}}</label>
                     <input id="name" type="text" v-model="username">
-                    <button @click="submitScore">{{appTexts["submitScore"][currentLanguage]}}</button>
+                    <button class="clickButton" @click="submitScore">{{appTexts["submitScore"][currentLanguage]}}</button>
     
                 </div>
                 <div>
                     <h3>{{appTexts["language"][currentLanguage]}}</h3>
                     <label for="language">{{appTexts["pickLanguage"][currentLanguage]}}</label>
 
-                    <select v-model="currentLanguage" name="langugage" id="language">
+                    <select class="clickButton" v-model="currentLanguage" name="langugage" id="language">
                     <option value="fr">Français</option>
                     <option value="en">English</option>
                     <option value="emojis">✅</option>
