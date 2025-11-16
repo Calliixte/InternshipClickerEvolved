@@ -5,18 +5,17 @@ class LeaderboardHandle
 {
 public static function handleGet($params){    
     $db = new myDB();
-    $result = $db->query("SELECT id_lb,l.id_user,name, score FROM leaderboard l INNER JOIN user u on u.id_user = l.id_user ORDER BY SCORE DESC"); //trié par défaut comme ça pas besoin de le faire en front
+    $result = $db->query("SELECT * FROM leaderboard l ORDER BY SCORE DESC"); //trié par défaut comme ça pas besoin de le faire en front
     while($row = $result -> fetchArray()){
-        $ar[] = array("id_lb"=>$row["id_lb"],"id_user"=>$row["id_user"],"name"=>$row["name"],"score"=>$row["score"]);   
+        $ar[] = array("id_lb"=>$row["id_lb"],"user_name"=>$row["user_name"],"score"=>$row["score"]);   
     }
     return $ar;
 }
 
 public static function handlePost($body){
     $db = new myDB();
-    $stmt = $db->prepare("INSERT INTO leaderboard VALUES (:id_lb,:id_user,:score)");
-    $stmt->bindValue(':id_lb',$body['id_lb'],SQLITE3_INTEGER);
-    $stmt->bindValue(':id_user',$body['id_user'],SQLITE3_INTEGER);
+    $stmt = $db->prepare("INSERT INTO leaderboard (user_name,score) VALUES (:user_name,:score)");
+    $stmt->bindValue(':user_name',$body['user_name'],SQLITE3_TEXT);
     $stmt->bindValue(':score',$body['score'],SQLITE3_INTEGER);
     
     $result = $stmt->execute();
