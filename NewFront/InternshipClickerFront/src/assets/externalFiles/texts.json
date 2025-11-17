@@ -1,0 +1,23 @@
+{
+    "title":{"fr":"Simulation très réaliste du marché de l'emploi","en":"Very realistic simulation of the job market","emojis":"🥽🖼️🕵️"},
+    "mainButton":{"fr":"Postuler","en":"Apply","emojis":"📰🖊️"},
+    "ratePerClick":{"fr":"Cv déposés par clic","en":"Applications per click","emojis":"📰🖱️"},
+    "ratePassive":{"fr":"Cv déposés passivement","en":"Passive Applications","emojis":"📰😴💤💤💤💤💤"},
+    "pendingApplications" : {"fr":"Candidatures en attente de réponse","en":"Pending Applications","emojis":"📰⏳"},
+    "showUpgrades": {"fr":"Montrer les améliorations","en":"Show Upgrades","emojis":"✅⬆️"},
+    "hideUpgrades": {"fr":"Cacher les améliorations","en":"Hide Upgrades","emojis":"❌⬆️"},
+    "noUShown":{"fr":"Améliorations cachées","en":"Upgrades Hidden","emojis":"❌⬆️"},
+    "amountNext":{"fr":"Quantité à acheter avant de débloquer la prochaine amélioration","en":"Amount until next upgrade","emojis":"🔋⬆️"},
+    "upgrade" : {"fr":"Améliorer","en":"Upgrade","emojis":"⬆️⬆️"},
+    "rejectedOn":{"fr":"Etre refusé.e à","en":"Get rejected on","emojis":"❌"},
+    "applications" : {"fr":"candidatures","en":"applications","emojis":"📰"},
+    "interfaceChange":{"fr":"Changer l'interface","en":"Change the interface","emojis":"👨‍🎨👩‍🎨🖼️🖌️🖌️"},
+    "backgroundC":{"fr":"Couleur d'arrière plan","en":"Background Color","emojis":"🖼️🟦"},
+    "textC":{"fr":"Couleur du texte","en":"Text Color","emojis":"⁉️🟥"},
+    "newTheme":{"fr":"Ajouter un theme","en":"Add theme","emojis":"➕🎨"},
+    "leaderboardTopFive":{"fr":"Tableau des scores (Top 5)","en":"Leaderboard (Top 5 scores)","emojis":"🥇🥈🥉🍀🕔"},
+    "username":{"fr":"Nom d'utilisateur","en":"Username","emojis":"🪪✒️"},
+    "submitScore":{"fr":"Envoyer le score actuel","en":"Submit Current Score","emojis":"📨📨💯"},
+    "language":{"fr":"Langue","en":"Language","emojis":"🗣️"},
+    "pickLanguage":{"fr":"Choisissez une langue","en":"Choose a language","emojis":"👅🗣️✅"}
+}
