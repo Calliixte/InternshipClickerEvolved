@@ -22,15 +22,26 @@
 
         <!-- SETTINGS BUTTON -->
         <button class="BTNSettings" @click="showSettings">
-          <svg :fill="darkMode ? 'Black' : 'White'" height="40px" width="40px" viewBox="0 0 512 512">
-            <path d="M451.528,198.531c-4.088-13.938-9.657-27.369-16.645-40.14l42.774-42.773l-81.273-81.274l-42.774,42.773
-            c-12.771-6.987-26.201-12.557-40.14-16.644V0H198.531v60.472c-13.939,4.088-27.369,9.657-40.14,16.644l-42.774-42.773
-            l-81.273,81.274l42.774,42.773c-6.988,12.771-12.558,26.202-16.645,40.14H0v114.939h60.472
-            c4.088,13.938,9.657,27.369,16.645,40.14l-42.774,42.773l81.273,81.274l42.774-42.773c12.771,6.987,26.201,12.557,40.14,16.644
-            V512h114.939v-60.472c13.939-4.088,27.369-9.657,40.14-16.644l42.774,42.773l81.273-81.274l-42.774-42.773
-            c6.988-12.771,12.558-26.202,16.645-40.14H512v0V198.531H451.528z"/>
+          <svg
+            :fill="darkMode ? 'White' : '#303234'"
+            :stroke="darkMode ? 'Black' : 'White'"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            height="40"
+            width="40"
+            viewBox="0 0 24 24"
+          >
+            <!-- outer gear -->
+            <path d="M19.44 12.98c.04-.32.06-.65.06-.98s-.02-.66-.06-.98l1.7-1.32a.5.5 0 0 0 .12-.63l-1.61-2.79a.5.5 0 0 0-.6-.22l-2 .8c-.5-.38-1.03-.7-1.62-.94l-.3-2.12A.5.5 0 0 0 14.29 3h-3.18a.5.5 0 0 0-.49.4l-.3 2.12c-.59.24-1.12.56-1.62.94l-2-.8a.5.5 0 0 0-.6.22L4.49 8.07a.5.5 0 0 0 .12.63l1.7 1.32c-.04.32-.06.65-.06.98s.02.66.06.98l-1.7 1.32a.5.5 0 0 0-.12.63l1.61 2.79c.14.25.44.35.7.26l2-.8c.5.38 1.03.7 1.62.94l.3 2.12c.05.24.25.4.49.4h3.18c.24 0 .45-.16.49-.4l.3-2.12c.59-.24 1.12-.56 1.62-.94l2 .8c.26.1.56 0 .7-.26l1.61-2.79a.5.5 0 0 0-.12-.63l-1.7-1.32z"/>
+
+            <!-- center circle -->
+            <circle cx="12" cy="12" r="3.5"/>
           </svg>
         </button>
+
+
+
       </div>
 
       <h1 class="text">{{ appTexts.title[currentLanguage] }}</h1>
@@ -55,7 +66,7 @@
       {{ upgradesShown ? appTexts.hideUpgrades[currentLanguage] : appTexts.showUpgrades[currentLanguage] }}
     </button>
 
-    <div id="upgradeList" v-show="upgradesShown">
+    <div id="upgradeList" v-if="upgradesShown">
       <div class="upgrade" v-for="(up, index) in upgrades" :key="index">
         <div v-if="up.cost !== -1">
           <h3 class="text">{{ up["title_" + currentLanguage] }}</h3>
@@ -73,10 +84,10 @@
             ({{ appTexts.rejectedOn[currentLanguage] }} {{ up.cost }} {{ appTexts.applications[currentLanguage] }})
           </button>
         </div>
-        <div v-else>
-          <p class="text">{{ appTexts.noUShown[currentLanguage] }}</p>
-        </div>
       </div>
+    </div>
+    <div v-else>
+      <p class="text">{{ appTexts.noUShown[currentLanguage] }}</p>
     </div>
 
 
