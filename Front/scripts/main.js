@@ -1,5 +1,5 @@
 
-const API_URL = "http://localhost:8000/api.php";
+const API_URL = "http://localhost/InternshipClickerEvolved/API/api.php";
 
 const app = Vue.createApp({
     data () {

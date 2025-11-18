@@ -22,15 +22,26 @@ cd API
 php -S localhost:8000
 ```
 
+### Database
+You can find the database creation file in 
+```bash
+BD/creation.sql
+```
+Reset (or create) the DB with
+```bash
+cd BD
+sqlite3 database.db < creation.sql
+```
+
 ### Frontend
 > Backend must be started in order for the frontend to work
-#### Vue import version (requires internet)
+#### Vue import version (Front/) (requires internet)
 ```bash
 cd Front
 python3 -m http.server 3000
 ```
 
-#### Vue local version (requires npm)
+#### Vue local version (NewFront/) (requires npm)
 > requirements : npm -> can be installed from https://github.com/npm/cli
 
 ```bash
