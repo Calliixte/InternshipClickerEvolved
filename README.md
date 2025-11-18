@@ -9,8 +9,6 @@
  
 # Install & Run
 
-> requirements : Internet 
-
 ```bash
 apt install php
 apt install sqlite3
@@ -24,9 +22,17 @@ php -S localhost:8000
 ```
 
 ### Frontend
+> Backend must be started in order for the frontend to work
+#### Vue import version (requires internet)
 ```bash
 cd Front
 python3 -m http.server 3000
+```
+
+#### Vue local version (requires npm)
+```bash
+cd NewFront
+npm run dev
 ```
 
 > //↑↑↓↓←→←→B A Enter 
