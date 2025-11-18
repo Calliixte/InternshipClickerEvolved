@@ -133,7 +133,7 @@
 </template>
 
 <script>
-const API_URL = "http://localhost:8000/API/api.php";
+const API_URL = "http://localhost:8000/api.php";
 
 export default {
   name: "App",
