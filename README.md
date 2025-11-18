@@ -9,6 +9,7 @@
  
 # Install & Run
 
+
 ```bash
 apt install php
 apt install sqlite3
@@ -30,8 +31,11 @@ python3 -m http.server 3000
 ```
 
 #### Vue local version (requires npm)
+> requirements : npm -> can be installed from https://github.com/npm/cli
+
 ```bash
 cd NewFront
+npm install
 npm run dev
 ```
 
