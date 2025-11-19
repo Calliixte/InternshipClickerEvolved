@@ -66,7 +66,7 @@
       {{ upgradesShown ? appTexts.hideUpgrades[currentLanguage] : appTexts.showUpgrades[currentLanguage] }}
     </button>
 
-    <div id="upgradeList" v-if="upgradesShown">
+    <div id="upgradeList" v-show="upgradesShown">
       <div class="upgrade" v-for="(up, index) in upgrades" :key="index">
         <div v-if="up.cost !== -1">
           <h3 class="text">{{ up["title_" + currentLanguage] }}</h3>
@@ -86,7 +86,7 @@
         </div>
       </div>
     </div>
-    <div v-else>
+    <div v-if="!upgradesShown">
       <p class="text">{{ appTexts.noUShown[currentLanguage] }}</p>
     </div>
 
