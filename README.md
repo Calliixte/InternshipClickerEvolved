@@ -6,20 +6,23 @@
  - API (sqlite & php) to fetch possible upgrades & leaderboard entries
  - Title header
  - Contact/Credits footer
- 
-# Install & Run
+
+# English
+## Install & Run
 
 
+### Backend
+#### Install
+> php sqlite3 and php-sqlite3 are required
 ```bash
 apt install php
 apt install sqlite3
 apt install php-sqlite3
 ```
-
-### Backend
+#### Run
 ```bash
 cd API
-php -S localhost:8000
+php -S localhost:8000 &
 ```
 
 ### Database
@@ -53,3 +56,57 @@ npm run dev
 ```
 
 > //↑↑↓↓←→←→B A Enter 
+
+# Français
+
+## Installation & Execution
+
+
+### Backend
+#### Installation
+> php, sqlite3 et php-sqlite3 sont nécéssaires
+```bash
+apt install php
+apt install sqlite3
+apt install php-sqlite3
+```
+#### Execution
+```bash
+cd API
+php -S localhost:8000 &
+```
+
+### Base de données
+Vous pouvez trouver le fichier SQL contenant les requêtes nécéssaires pour la création de la base dans :
+```bash
+BD/creation.sql
+```
+Reinitialisez (ou creez) la base de données avec :
+```bash
+cd BD
+sqlite3 database.db < creation.sql
+```
+> Etape normalement non nécéssaire, le dépot git/rendu zip contenant déja la BD créée
+
+### Frontend
+> Le backend doit être démarré pour que le frontend fonctionne
+
+> Dans le code du frontend se situe une variable prenant l'url de l'api qui est à localhost:8000 car c'est ce qui est indiqué sur ce README, si vous lancez le back à une autre url, il faudra changer cette constante dans le front que vous utilisez.
+#### Version avec l'import Vue (Front/) (nécéssite internet)
+```bash
+cd Front
+python3 -m http.server 3000
+```
+
+#### Version avec Vue en local (NewFront/) (requires npm)
+> requirements : npm -> can be installed from https://github.com/npm/cli
+
+```bash
+cd NewFront
+npm install
+cd InternshipClickerFront
+npm install
+npm run dev
+```
+
+> //↑↑↓↓←→←→B A Entrée 
