@@ -86,7 +86,7 @@
         </div>
       </div>
     </div>
-    <div v-if="!upgradesShown">
+    <div v-show="!upgradesShown">
       <p class="text">{{ appTexts.noUShown[currentLanguage] }}</p>
     </div>
 
