@@ -47,6 +47,8 @@ python3 -m http.server 3000
 ```bash
 cd NewFront
 npm install
+cd InternshipClickerFront
+npm install
 npm run dev
 ```
 
